@@ -6,7 +6,7 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function getDesignTokens(req, res) {
+export async function getDesignTokens(req, res) {
     try {
         const mainImage = await processImage(
             path.join(__dirname, '../../public/images/main.jpg'),
