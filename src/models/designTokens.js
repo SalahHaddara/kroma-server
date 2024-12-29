@@ -169,5 +169,30 @@ export const designTokensStructure = {
             color: "#616161"
         }
     },
-   
+    quote: {
+        styles: {
+            backgroundColor: "#FFFBEB",
+            cornerRadius: "6",
+            padding: "16"
+        },
+        quoteSymbol: {
+            color: "#FAD7A0",
+            fontSize: "32"
+        },
+        quote: {
+            text: "Design is intelligence made visible",
+            color: "#A04000",
+            fontSize: "14",
+            fontWeight: "400",
+            letterSpacing: "0.2px"
+        },
+        author: {
+            name: "Alina Wheeler",
+            color: "#E67E22",
+            fontSize: "12",
+            fontWeight: "500",
+            letterSpacing: "0.1px"
+        }
+    },
+
 };
