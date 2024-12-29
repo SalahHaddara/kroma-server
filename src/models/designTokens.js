@@ -28,4 +28,15 @@ export const designTokensStructure = {
             "#424242"
         ]
     ],
+    typography: {
+        fontFamily: "Roboto",
+        sizes: {
+            h1: 72,
+            h2: 54,
+            h3: 44,
+            paragraph: 18,
+            caption: 14
+        }
+    },
+
 };
