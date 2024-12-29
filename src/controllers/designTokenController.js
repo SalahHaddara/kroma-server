@@ -23,3 +23,12 @@ const smallImage2 = await processImage(
     400,
     400
 );
+const designTokens = {
+    ...designTokensStructure,
+    inspirationImages: {
+        mainImage: {imageData: mainImage},
+        smallImage1: {imageData: smallImage1},
+        smallImage2: {imageData: smallImage2}
+    }
+};
+res.json(designTokens);
