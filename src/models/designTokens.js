@@ -289,15 +289,4 @@ export const designTokensStructure = {
         xl: "24px",
         full: "9999px"
     },
-    inspirationImages: {
-        mainImage: {
-            imageData: mainImage
-        },
-        smallImage1: {
-            imageData: smallImage1
-        },
-        smallImage2: {
-            imageData: smallImage2
-        }
-    }
 };
