@@ -1,3 +1,7 @@
+import {openai} from '../config/openai.js';
+import {DESIGN_TOKEN_PARTS, GPT_CONFIG} from '../config/constants.js';
+import {designTokensStructure} from '../models/designTokens.js';
+
 function getSystemPrompt(userInput, parts) {
     const partsList = Object.keys(parts).join(', ');
     return `Create a design system with these requirements:
@@ -16,3 +20,22 @@ function getSystemPrompt(userInput, parts) {
     
     Generate JSON for these sections only: ${partsList}`;
 }
+
+export async function generateDesignTokenPart(prompt, part) {
+    const response = await openai.chat.completions.create({
+        ...GPT_CONFIG,
+        messages: [
+            {
+                role: "system",
+                content: getSystemPrompt(prompt, part)
+            },
+            {
+                role: "user",
+                content: `Generate the design system part matching this structure: ${JSON.stringify(designTokensStructure, null, 2)}`
+            }
+        ]
+    });
+
+    return response.choices[0].message.content;
+}
+
