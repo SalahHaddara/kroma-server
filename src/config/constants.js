@@ -17,4 +17,4 @@ export const DESIGN_TOKEN_PARTS = {
 export const GPT_CONFIG = {
     model: "gpt-4",
     temperature: 0.7
-}
+};
