@@ -1,283 +1,292 @@
 export const designTokensStructure = {
-    "colors": [
-        // Primary palette - Urban greys for modern feel
+    colors: [
         [
-            "#FFFFFF",
-            "#F7F7F7",
-            "#E5E5E5",
-            "#CCCCCC",
-            "#999999",
-            "#666666",
-            "#333333"
+            "#FDF2E9",
+            "#FAD7A0",
+            "#F5B041",
+            "#EB984E",
+            "#E67E22",
+            "#CA6F1E",
+            "#A04000"
         ],
-        // Accent colors - Vibrant sportswear inspired
         [
-            "#FF3366",  // Energetic red
-            "#00CCFF",  // Electric blue
-            "#FFD100",  // Athletic yellow
-            "#7000FF",  // Street purple
-            "#00FF66",  // Neon green
-            "#FF9900",  // Urban orange
-            "#FF0099"   // Hype pink
+            "#FDEDEC",
+            "#F9EBEA",
+            "#F5CBA7",
+            "#F0B27A",
+            "#E59866",
+            "#DC7633",
+            "#D35400"
         ],
-        // Neutral palette - Street style
         [
-            "#1A1A1A",  // Almost black
-            "#2D2D2D",
-            "#404040",
-            "#595959",
-            "#808080",
-            "#A6A6A6",
-            "#D9D9D9"
+            "#FAFAFA",
+            "#F4F4F4",
+            "#E8E8E8",
+            "#D1D1D1",
+            "#9E9E9E",
+            "#616161",
+            "#424242"
         ]
     ],
-    "typography": {
-        "fontFamily": "Inter",  // Modern, clean font for streetwear aesthetic
-        "sizes": {
-            "h1": 96,  // Bold, impactful headlines
-            "h2": 72,
-            "h3": 56,
-            "paragraph": 16,
-            "caption": 14
+    typography: {
+        fontFamily: "Roboto",
+        sizes: {
+            h1: 72,
+            h2: 54,
+            h3: 44,
+            paragraph: 18,
+            caption: 14
         }
     },
-    "buttons": {
-        "button1": {  // Primary CTA
-            "background": "#FF3366",
-            "text": "#FFFFFF",
-            "hoverBackground": "#FF0044",
-            "activeBackground": "#CC0033",
-            "borderRadius": "4px",
-            "paddingX": "24px",
-            "paddingY": "16px",
-            "fontSize": "18px",
-            "fontWeight": "700",
-            "letterSpacing": "0.5px",
-            "textTransform": "uppercase"
+    buttons: {
+        button1: {
+            background: "#0EA5E9",
+            text: "#FFFFFF",
+            hoverBackground: "#0284C7",
+            activeBackground: "#0369A1",
+            borderRadius: "12px",
+            paddingX: "24px",
+            paddingY: "14px",
+            fontSize: "16px",
+            fontWeight: "600",
+            letterSpacing: "0.5px",
+            textTransform: "uppercase"
         },
-        "button2": {  // Secondary action
-            "background": "#1A1A1A",
-            "text": "#FFFFFF",
-            "hoverBackground": "#333333",
-            "activeBackground": "#000000",
-            "borderRadius": "4px",
-            "paddingX": "20px",
-            "paddingY": "14px",
-            "fontSize": "16px",
-            "fontWeight": "600",
-            "letterSpacing": "0.5px",
-            "textTransform": "uppercase"
+        button2: {
+            background: "#E879F9",
+            text: "#FFFFFF",
+            hoverBackground: "#D946EF",
+            activeBackground: "#C026D3",
+            borderRadius: "8px",
+            paddingX: "20px",
+            paddingY: "12px",
+            fontSize: "14px",
+            fontWeight: "500",
+            letterSpacing: "normal",
+            textTransform: "none"
         },
-        "button3": {  // Featured releases
-            "background": "#7000FF",
-            "text": "#FFFFFF",
-            "hoverBackground": "#5C00D6",
-            "activeBackground": "#4800AD",
-            "borderRadius": "4px",
-            "paddingX": "22px",
-            "paddingY": "14px",
-            "fontSize": "16px",
-            "fontWeight": "600",
-            "letterSpacing": "0.5px",
-            "textTransform": "uppercase"
+        button3: {
+            background: "#4B5563",
+            text: "#FFFFFF",
+            hoverBackground: "#374151",
+            activeBackground: "#1F2937",
+            borderRadius: "16px",
+            paddingX: "32px",
+            paddingY: "16px",
+            fontSize: "18px",
+            fontWeight: "700",
+            letterSpacing: "-0.5px",
+            textTransform: "none"
         },
-        "button4": {  // Wishlist/Save
-            "background": "#FFFFFF",
-            "text": "#1A1A1A",
-            "border": "#1A1A1A",
-            "hoverBackground": "#F7F7F7",
-            "activeBorder": "#000000",
-            "borderRadius": "4px",
-            "paddingX": "20px",
-            "paddingY": "12px",
-            "fontSize": "14px",
-            "fontWeight": "600",
-            "letterSpacing": "0.5px",
-            "textTransform": "uppercase"
+        button4: {
+            background: "#FFFFFF",
+            text: "#0EA5E9",
+            border: "#0EA5E9",
+            hoverBackground: "#F0F9FF",
+            activeBorder: "#0284C7",
+            borderRadius: "24px",
+            paddingX: "28px",
+            paddingY: "14px",
+            fontSize: "15px",
+            fontWeight: "500",
+            letterSpacing: "0.25px",
+            textTransform: "capitalize"
         },
-        "button5": {  // Filter/Sort
-            "background": "#F7F7F7",
-            "text": "#1A1A1A",
-            "border": "#E5E5E5",
-            "hoverBackground": "#E5E5E5",
-            "activeBorder": "#CCCCCC",
-            "borderRadius": "4px",
-            "paddingX": "16px",
-            "paddingY": "10px",
-            "fontSize": "14px",
-            "fontWeight": "500",
-            "letterSpacing": "0.5px",
-            "textTransform": "uppercase"
+        button5: {
+            background: "#FDF4FF",
+            text: "#C026D3",
+            border: "#E879F9",
+            hoverBackground: "#FAE8FF",
+            activeBorder: "#D946EF",
+            borderRadius: "6px",
+            paddingX: "16px",
+            paddingY: "10px",
+            fontSize: "13px",
+            fontWeight: "400",
+            letterSpacing: "1px",
+            textTransform: "uppercase"
         },
-        "button6": {  // Size selector
-            "background": "#FFFFFF",
-            "text": "#1A1A1A",
-            "border": "#E5E5E5",
-            "hoverBackground": "#F7F7F7",
-            "activeBorder": "#1A1A1A",
-            "borderRadius": "4px",
-            "paddingX": "16px",
-            "paddingY": "16px",
-            "fontSize": "14px",
-            "fontWeight": "600",
-            "letterSpacing": "0",
-            "textTransform": "none"
+        button6: {
+            background: "#F9FAFB",
+            text: "#1F2937",
+            border: "#E5E7EB",
+            hoverBackground: "#F3F4F6",
+            activeBorder: "#D1D5DB",
+            borderRadius: "4px",
+            paddingX: "18px",
+            paddingY: "8px",
+            fontSize: "12px",
+            fontWeight: "600",
+            letterSpacing: "0.8px",
+            textTransform: "none"
         }
     },
-    "spacing": {
-        "micro": 4,
-        "xs": 8,
-        "sm": 12,
-        "base": 16,
-        "md": 24,
-        "lg": 32,
-        "xl": 48,
-        "xxl": 64
+    spacing: {
+        micro: 4,
+        xs: 8,
+        sm: 12,
+        base: 16,
+        md: 24,
+        lg: 32,
+        xl: 48,
+        xxl: 64
     },
-    "icons": {
-        "icon1": {  // Shopping bag
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M19 7h-3V6c0-2.21-1.79-4-4-4S8 3.79 8 6v1H5c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V9c0-1.11-.89-2-2-2zm-8-1c0-1.1.9-2 2-2s2 .9 2 2v1h-4V6z\" fill=\"currentColor\"/></svg>",
-            "color": "#1A1A1A"
+    icons: {
+        icon1: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L14.85 8.4L22 9.31L16.72 13.77L18.26 20.78L12 17.27L5.74 20.78L7.28 13.77L2 9.31L9.15 8.4L12 2Z" fill="currentColor"/>
+            </svg>`,
+            color: "#E67E22"
         },
-        "icon2": {  // Heart/Wishlist
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\" fill=\"currentColor\"/></svg>",
-            "color": "#FF3366"
+        icon2: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+            </svg>`,
+            color: "#DC7633"
         },
-        "icon3": {  // Search
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\" fill=\"currentColor\"/></svg>",
-            "color": "#1A1A1A"
+        icon3: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V8L12 13L20 8V18ZM12 11L4 6H20L12 11Z" fill="currentColor"/>
+            </svg>`,
+            color: "#A04000"
         },
-        "icon4": {  // Filter
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z\" fill=\"currentColor\"/></svg>",
-            "color": "#1A1A1A"
+        icon4: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z" fill="currentColor"/>
+            </svg>`,
+            color: "#D35400"
         },
-        "icon5": {  // Size guide
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h18v8z\" fill=\"currentColor\"/></svg>",
-            "color": "#1A1A1A"
+        icon5: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
+            </svg>`,
+            color: "#E59866"
         },
-        "icon6": {  // Share
-            "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92zM18 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7.02c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z\" fill=\"currentColor\"/></svg>",
-            "color": "#1A1A1A"
+        icon6: {
+            svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z" fill="currentColor"/>
+            </svg>`,
+            color: "#616161"
         }
     },
-    "quote": {
-        "styles": {
-            "backgroundColor": "#F7F7F7",
-            "cornerRadius": "4",
-            "padding": "24"
+    quote: {
+        styles: {
+            backgroundColor: "#FFFBEB",
+            cornerRadius: "6",
+            padding: "16"
         },
-        "quoteSymbol": {
-            "color": "#FF3366",
-            "fontSize": "48"
+        quoteSymbol: {
+            color: "#FAD7A0",
+            fontSize: "32"
         },
-        "quote": {
-            "text": "Sneakers are the new status symbol.",
-            "color": "#1A1A1A",
-            "fontSize": "24",
-            "fontWeight": "600",
-            "letterSpacing": "-0.5px"
+        quote: {
+            text: "Design is intelligence made visible",
+            color: "#A04000",
+            fontSize: "14",
+            fontWeight: "400",
+            letterSpacing: "0.2px"
         },
-        "author": {
-            "name": "Streetwear Culture",
-            "color": "#666666",
-            "fontSize": "16",
-            "fontWeight": "500",
-            "letterSpacing": "0"
+        author: {
+            name: "Alina Wheeler",
+            color: "#E67E22",
+            fontSize: "12",
+            fontWeight: "500",
+            letterSpacing: "0.1px"
         }
     },
-    "alerts": {
-        "alert1": {  // New drop alert
-            "background": "#1A1A1A",
-            "border": "#333333",
-            "title": "#FFFFFF",
-            "text": "#CCCCCC",
-            "titleText": "New Drop Alert!",
-            "message": "The latest Jordan release is now available.",
-            "icon": "#FF3366",
-            "borderRadius": "4px",
-            "paddingX": "20px",
-            "paddingY": "16px",
-            "titleSize": "16px",
-            "titleWeight": "700",
-            "titleLetterSpacing": "0.5px",
-            "messageSize": "14px",
-            "messageWeight": "400",
-            "messageLetterSpacing": "0",
-            "borderWidth": "1px",
-            "iconSize": "24px"
+    alerts: {
+        alert1: {
+            background: "#1E293B",
+            border: "#475569",
+            title: "#E2E8F0",
+            text: "#94A3B8",
+            titleText: "System Alert",
+            message: "An unexpected error has occurred. Please try again later.",
+            icon: "#F43F5E",
+            borderRadius: "0px",
+            paddingX: "12px",
+            paddingY: "12px",
+            titleSize: "18px",
+            titleWeight: "700",
+            titleLetterSpacing: "1px",
+            messageSize: "16px",
+            messageWeight: "500",
+            messageLetterSpacing: "1px",
+            borderWidth: "2px",
+            iconSize: "24px"
         },
-        "alert2": {  // Limited stock
-            "background": "#FFE5E5",
-            "border": "#FF3366",
-            "title": "#CC0033",
-            "text": "#FF3366",
-            "titleText": "Limited Stock",
-            "message": "Only a few pairs left in your size!",
-            "icon": "#FF3366",
-            "borderRadius": "4px",
-            "paddingX": "20px",
-            "paddingY": "16px",
-            "titleSize": "16px",
-            "titleWeight": "700",
-            "titleLetterSpacing": "0.5px",
-            "messageSize": "14px",
-            "messageWeight": "400",
-            "messageLetterSpacing": "0",
-            "borderWidth": "1px",
-            "iconSize": "24px"
+        alert2: {
+            background: "#FEF2F2",
+            border: "#F43F5E",
+            title: "#BE123C",
+            text: "#9F1239",
+            titleText: "Error Alert",
+            message: "Unable to process your request. Please try again later.",
+            icon: "#F43F5E",
+            borderRadius: "12px",
+            paddingX: "20px",
+            paddingY: "20px",
+            titleSize: "18px",
+            titleWeight: "700",
+            titleLetterSpacing: "-0.5px",
+            messageSize: "15px",
+            messageWeight: "500",
+            messageLetterSpacing: "0.2px",
+            borderWidth: "6px",
+            iconSize: "24px"
         },
-        "alert3": {  // Promo alert
-            "background": "#FFF3D9",
-            "border": "#FFD100",
-            "title": "#1A1A1A",
-            "text": "#666666",
-            "titleText": "Exclusive Offer",
-            "message": "Use code SNEAKERDROP for 10% off your first purchase",
-            "icon": "#FFD100",
-            "borderRadius": "4px",
-            "paddingX": "20px",
-            "paddingY": "16px",
-            "titleSize": "16px",
-            "titleWeight": "700",
-            "titleLetterSpacing": "0.5px",
-            "messageSize": "14px",
-            "messageWeight": "400",
-            "messageLetterSpacing": "0",
-            "borderWidth": "1px",
-            "iconSize": "24px"
+        alert3: {
+            background: "#FFFBEB",
+            border: "#F59E0B",
+            title: "#B45309",
+            text: "#92400E",
+            titleText: "Warning Message",
+            message: "Your session will expire in 5 minutes. Save your work.",
+            icon: "#F59E0B",
+            borderRadius: "6px",
+            paddingX: "14px",
+            paddingY: "14px",
+            titleSize: "15px",
+            titleWeight: "600",
+            titleLetterSpacing: "0.5px",
+            messageSize: "13px",
+            messageWeight: "400",
+            messageLetterSpacing: "0.1px",
+            borderWidth: "3px",
+            iconSize: "18px"
         },
-        "alert4": {
-            "background": "#E3F4FF",
-            "border": "#2563EB",
-            "title": "#1D4ED8",
-            "text": "#1D4ED8",
-            "titleText": "Exclusive Sale",
-            "message": "Save 20% on selected styles. Shop now!",
-            "icon": "#2563EB",
-            "borderRadius": "12px",
-            "paddingX": "20px",
-            "paddingY": "16px",
-            "titleSize": "20px",
-            "titleWeight": "700",
-            "titleLetterSpacing": "-0.8px",
-            "messageSize": "16px",
-            "messageWeight": "500",
-            "messageLetterSpacing": "0.3px",
-            "borderWidth": "4px",
-            "iconSize": "26px"
+        alert4: {
+            background: "#EFF6FF",
+            border: "#3B82F6",
+            title: "#1D4ED8",
+            text: "#1E40AF",
+            titleText: "Information Update",
+            message: "New features are available. Click here to explore them.",
+            icon: "#3B82F6",
+            borderRadius: "16px",
+            paddingX: "24px",
+            paddingY: "18px",
+            titleSize: "20px",
+            titleWeight: "700",
+            titleLetterSpacing: "-0.8px",
+            messageSize: "16px",
+            messageWeight: "500",
+            messageLetterSpacing: "0.3px",
+            borderWidth: "5px",
+            iconSize: "26px"
         }
     },
-    "shadows": {
-        "sm": "0 1px 2px rgba(0, 0, 0, 0.07)",
-        "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-        "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-        "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+    shadows: {
+        sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
+        md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+        xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
     },
-    "borderRadius": {
-        "sm": "6px",
-        "md": "12px",
-        "lg": "18px",
-        "xl": "24px",
-        "full": "9999px"
-    }
+    borderRadius: {
+        sm: "6px",
+        md: "12px",
+        lg: "16px",
+        xl: "24px",
+        full: "9999px"
+    },
 };
