@@ -13,3 +13,8 @@ export const DESIGN_TOKEN_PARTS = {
         borderRadius: true
     }
 };
+
+export const GPT_CONFIG = {
+    model: "gpt-4",
+    temperature: 0.7
+}
