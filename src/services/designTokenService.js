@@ -17,4 +17,6 @@ export async function generateDesignSystem(prompt) {
         ...JSON.parse(part1Response),
         ...JSON.parse(part2Response)
     };
+
+    validateStructure(combined, designTokensStructure);
 }
