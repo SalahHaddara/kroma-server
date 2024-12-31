@@ -16,3 +16,11 @@ export function validateStructure(generated, template) {
     }
 }
 
+export function validatePrompt(prompt) {
+    if (!prompt || typeof prompt !== 'string') {
+        throw new ValidationError('Valid prompt string is required');
+    }
+    if (prompt.length < 10) {
+        throw new ValidationError('Prompt must be at least 10 characters long');
+    }
+}
