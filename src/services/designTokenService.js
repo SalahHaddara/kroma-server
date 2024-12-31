@@ -19,4 +19,11 @@ export async function generateDesignSystem(prompt) {
     };
 
     validateStructure(combined, designTokensStructure);
+
+    const [mainImage, smallImage1, smallImage2] = await Promise.all([
+        processImage(path.join(__dirname, '../../public/images/main.jpg'), 800, 400),
+        processImage(path.join(__dirname, '../../public/images/small1.jpg'), 400, 400),
+        processImage(path.join(__dirname, '../../public/images/small2.jpg'), 400, 400)
+    ]);
+
 }
