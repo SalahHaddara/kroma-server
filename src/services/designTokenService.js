@@ -10,4 +10,11 @@ const __dirname = path.dirname(__filename);
 
 export async function generateDesignSystem(prompt) {
     validatePrompt(prompt);
+
+    const {part1Response, part2Response} = await generateCompleteDesignTokens(prompt);
+
+    const combined = {
+        ...JSON.parse(part1Response),
+        ...JSON.parse(part2Response)
+    };
 }
