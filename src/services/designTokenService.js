@@ -26,4 +26,12 @@ export async function generateDesignSystem(prompt) {
         processImage(path.join(__dirname, '../../public/images/small2.jpg'), 400, 400)
     ]);
 
+    return {
+        ...combined,
+        inspirationImages: {
+            mainImage: {imageData: mainImage},
+            smallImage1: {imageData: smallImage1},
+            smallImage2: {imageData: smallImage2}
+        }
+    };
 }
