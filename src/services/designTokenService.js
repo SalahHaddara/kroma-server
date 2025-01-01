@@ -1,4 +1,4 @@
-import {generateCompleteDesignTokens} from './openaiService.js';
+import {generateCompleteDesignTokens} from './aiService.js';
 import {validateStructure, validatePrompt} from './validationService.js';
 import {designTokensStructure} from '../models/designTokens.js';
 import {processImage} from './imageService.js';
