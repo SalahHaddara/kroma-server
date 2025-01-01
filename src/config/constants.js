@@ -11,10 +11,10 @@ export const DESIGN_TOKEN_PARTS = {
         alerts: true,
         shadows: true,
         borderRadius: true
-    }
+    },
 };
 
 export const GPT_CONFIG = {
-    model: "gpt-4",
+    model: "gpt-3.5-turbo",
     temperature: 0.7
 };
