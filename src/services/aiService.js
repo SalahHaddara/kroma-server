@@ -32,6 +32,12 @@ export async function generateDesignTokenPart(prompt, part) {
 
 export async function generateInspirationImages(prompt) {
 
+    const imagePrompts = {
+        mainImage: `Create a modern, high-quality design inspiration image showcasing ${prompt}. Focus on overall aesthetic and mood.`,
+        smallImage1: `Create a detailed design inspiration image focusing on the textures and patterns of ${prompt}.`,
+        smallImage2: `Create a design inspiration image showing the color palette and visual elements of ${prompt}.`
+    };
+
 }
 
 export async function generateCompleteDesignTokens(prompt) {
