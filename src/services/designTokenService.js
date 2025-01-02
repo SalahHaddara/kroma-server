@@ -16,6 +16,8 @@ export async function generateDesignSystem(prompt) {
         generateInspirationImages(prompt)
     ]);
 
+    const {part1Response, part2Response} = tokenResponse;
+
     const combined = {
         ...JSON.parse(part1Response),
         ...JSON.parse(part2Response)
@@ -25,6 +27,6 @@ export async function generateDesignSystem(prompt) {
 
     return {
         ...combined,
-
+        inspirationImages
     };
 }
