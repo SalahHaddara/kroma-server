@@ -31,13 +31,17 @@ export async function generateDesignTokenPart(prompt, part) {
 }
 
 export async function generateInspirationImages(prompt) {
+    try {
+        const imagePrompts = {
+            mainImage: `Create a modern, high-quality design inspiration image showcasing ${prompt}. Focus on overall aesthetic and mood.`,
+            smallImage1: `Create a detailed design inspiration image focusing on the textures and patterns of ${prompt}.`,
+            smallImage2: `Create a design inspiration image showing the color palette and visual elements of ${prompt}.`
+        };
 
-    const imagePrompts = {
-        mainImage: `Create a modern, high-quality design inspiration image showcasing ${prompt}. Focus on overall aesthetic and mood.`,
-        smallImage1: `Create a detailed design inspiration image focusing on the textures and patterns of ${prompt}.`,
-        smallImage2: `Create a design inspiration image showing the color palette and visual elements of ${prompt}.`
-    };
-
+    } catch (error) {
+        console.error('Error generating inspiration images:', error);
+        throw new Error('Failed to generate inspiration images');
+    }
 }
 
 export async function generateCompleteDesignTokens(prompt) {
