@@ -44,6 +44,11 @@ export async function generateInspirationImages(prompt) {
             generateImage(imagePrompts.smallImage2, '256x256')
         ]);
 
+        return {
+            mainImage: {imageData: mainImage},
+            smallImage1: {imageData: smallImage1},
+            smallImage2: {imageData: smallImage2}
+        };
     } catch (error) {
         console.error('Error generating inspiration images:', error);
         throw new Error('Failed to generate inspiration images');
