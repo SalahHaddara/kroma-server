@@ -38,6 +38,11 @@ export async function generateInspirationImages(prompt) {
             smallImage2: `Create a design inspiration image showing the color palette and visual elements of ${prompt}.`
         };
 
+        const [mainImage, smallImage1, smallImage2] = await Promise.all([
+            generateImage(imagePrompts.mainImage, '256x256'),
+            generateImage(imagePrompts.smallImage1, '256x256'),
+            generateImage(imagePrompts.smallImage2, '256x256')
+        ]);
 
     } catch (error) {
         console.error('Error generating inspiration images:', error);
