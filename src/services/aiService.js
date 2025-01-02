@@ -30,6 +30,10 @@ export async function generateDesignTokenPart(prompt, part) {
     return response.choices[0].message.content;
 }
 
+export async function generateInspirationImages(prompt) {
+
+}
+
 export async function generateCompleteDesignTokens(prompt) {
     const [part1Response, part2Response] = await Promise.all([
         generateDesignTokenPart(prompt, DESIGN_TOKEN_PARTS.part1),
