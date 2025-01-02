@@ -46,17 +46,21 @@ export async function generateInspirationImages(prompt) {
 }
 
 async function generateImage(prompt, size) {
-    const response = await openai.images.generate({
-        model: "dall-e-2",
-        prompt: prompt,
-        size: size,
-        quality: "standard",
-        n: 1,
-        response_format: "b64_json"
-    });
+    try {
+        const response = await openai.images.generate({
+            model: "dall-e-2",
+            prompt: prompt,
+            size: size,
+            quality: "standard",
+            n: 1,
+            response_format: "b64_json"
+        });
 
-    return `data:image/png;base64,${response.data[0].b64_json}`;
-
+        return `data:image/png;base64,${response.data[0].b64_json}`;
+    } catch (error) {
+        console.error('Error generating image:', error);
+        throw error;
+    }
 }
 
 export async function generateCompleteDesignTokens(prompt) {
