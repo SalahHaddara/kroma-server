@@ -38,10 +38,25 @@ export async function generateInspirationImages(prompt) {
             smallImage2: `Create a design inspiration image showing the color palette and visual elements of ${prompt}.`
         };
 
+
     } catch (error) {
         console.error('Error generating inspiration images:', error);
         throw new Error('Failed to generate inspiration images');
     }
+}
+
+async function generateImage(prompt, size) {
+    const response = await openai.images.generate({
+        model: "dall-e-2",
+        prompt: prompt,
+        size: size,
+        quality: "standard",
+        n: 1,
+        response_format: "b64_json"
+    });
+
+    return `data:image/png;base64,${response.data[0].b64_json}`;
+
 }
 
 export async function generateCompleteDesignTokens(prompt) {
