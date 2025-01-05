@@ -18,5 +18,11 @@ const userSchema = new mongoose.Schema({
             return !this.googleId && !this.githubId;
         }
     },
-
+    googleId: String,
+    githubId: String,
+    avatar: String,
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
