@@ -11,25 +11,29 @@ const signToken = (id) => {
 }
 
 export const signup = async (req, res) => {
-    const {fullName, email, password} = req.body;
+    try {
+        const {fullName, email, password} = req.body;
 
-    const existingUser = await User.findOne({email});
-    if (existingUser) {
-        return res.status(400).json({message: 'Email already exist'});
+        const existingUser = await User.findOne({email});
+        if (existingUser) {
+            return res.status(400).json({message: 'Email already exist'});
+        }
+
+        const user = await User.create({
+            fullName,
+            email,
+            password
+        });
+
+        const token = signToken(user._id);
+
+        user.password = undefined;
+
+        res.status(201).json({
+            token,
+            user
+        });
+    } catch (e) {
+        res.status(401).json({message: 'Invalid token'});
     }
-
-    const user = await User.create({
-        fullName,
-        email,
-        password
-    });
-
-    const token = signToken(user._id);
-
-    user.password = undefined;
-
-    res.status(201).json({
-        token,
-        user
-    });
 }
