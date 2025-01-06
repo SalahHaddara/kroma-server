@@ -93,7 +93,10 @@ export const googleAuth = async (req, res) => {
 
         const jwtToken = signToken(user._id);
 
-
+        res.status(200).json({
+            token: jwtToken,
+            user
+        })
     } catch (error) {
         res.status(400).json({message: error.message});
     }
