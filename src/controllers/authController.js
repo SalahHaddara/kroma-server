@@ -130,6 +130,19 @@ export const githubAuth = async (req, res) => {
             }
         });
 
+        const {login: githubUsername, id: githubId, avatar_url, email} = userResponse.data;
+
+        // Get user's email if not provided in profile
+        let userEmail = email;
+        if (!userEmail) {
+            const emailsResponse = await axios.get('https://api.github.com/user/emails', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            userEmail = emailsResponse.data.find(email => email.primary)?.email;
+        }
+
     } catch (error) {
         res.status(400).json({message: error.message});
     }
