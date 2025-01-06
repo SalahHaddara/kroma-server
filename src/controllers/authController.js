@@ -39,19 +39,24 @@ export const signup = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-    const {email, password} = req.body;
+    try {
 
-    const user = User.find({email}).select('+password');
-    if (!user || !(await user.comparePassword(password))) {
-        return res.status(401).json({message: 'Invalid email or password'});
+        const {email, password} = req.body;
+
+        const user = User.find({email}).select('+password');
+        if (!user || !(await user.comparePassword(password))) {
+            return res.status(401).json({message: 'Invalid email or password'});
+        }
+
+        const token = signToken(user._id);
+
+        user.password = undefined;
+
+        res.status(200).json({
+            token,
+            user
+        });
+    } catch (e) {
+        res.status(400).json({message: e.message});
     }
-
-    const token = signToken(user._id);
-
-    user.password = undefined;
-
-    res.status(200).json({
-        token,
-        user
-    });
 }
