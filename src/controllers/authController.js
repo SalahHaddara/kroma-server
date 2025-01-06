@@ -22,7 +22,9 @@ export const signup = async (req, res) => {
         fullName,
         email,
         password
-    })
+    });
+
+    const token = signToken(user._id);
 
 
 }
