@@ -121,6 +121,15 @@ export const githubAuth = async (req, res) => {
             }
         );
 
+        const accessToken = tokenResponse.data.access_token;
+
+        // Get user data from GitHub
+        const userResponse = await axios.get('https://api.github.com/user', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+
     } catch (error) {
         res.status(400).json({message: error.message});
     }
