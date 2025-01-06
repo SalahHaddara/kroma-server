@@ -73,6 +73,7 @@ export const googleAuth = async (req, res) => {
 
         const {email, name, picture, sub: googleId} = ticket.getPayload();
 
+        let user = await User.findOne({email});
 
     } catch (error) {
         res.status(400).json({message: error.message});
