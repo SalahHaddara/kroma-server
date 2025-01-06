@@ -18,5 +18,11 @@ export const signup = async (req, res) => {
         return res.status(400).json({message: 'Email already exist'});
     }
 
+    const user = await User.create({
+        fullName,
+        email,
+        password
+    })
+
 
 }
