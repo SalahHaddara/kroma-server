@@ -101,3 +101,12 @@ export const googleAuth = async (req, res) => {
         res.status(400).json({message: error.message});
     }
 };
+
+export const githubAuth = async (req, res) => {
+    try {
+        const {code} = req.body;
+
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+};
