@@ -83,6 +83,12 @@ export const googleAuth = async (req, res) => {
                 googleId,
                 avatar: picture
             });
+        } else {
+            // Update existing user's Google ID if not set
+            if (!user.googleId) {
+                user.googleId = googleId;
+                await user.save();
+            }
         }
     } catch (error) {
         res.status(400).json({message: error.message});
