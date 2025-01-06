@@ -162,6 +162,13 @@ export const githubAuth = async (req, res) => {
             }
         }
 
+        // Create token
+        const token = signToken(user._id);
+
+        res.status(200).json({
+            token,
+            user
+        });
     } catch (error) {
         res.status(400).json({message: error.message});
     }
