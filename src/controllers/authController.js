@@ -65,6 +65,12 @@ export const googleAuth = async (req, res) => {
     try {
         const {token} = req.body;
 
+        // Verify Google token
+        const ticket = await googleClient.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+
 
     } catch (error) {
         res.status(400).json({message: error.message});
