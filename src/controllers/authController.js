@@ -45,4 +45,13 @@ export const login = async (req, res) => {
     if (!user || !(await user.comparePassword(password))) {
         return res.status(401).json({message: 'Invalid email or password'});
     }
+
+    const token = signToken(user._id);
+
+    user.password = undefined;
+
+    res.status(200).json({
+        token,
+        user
+    });
 }
