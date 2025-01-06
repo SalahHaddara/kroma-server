@@ -8,3 +8,7 @@ const signToken = (id) => {
         expiresIn: process.env.JWT_EXPIRES_IN
     });
 }
+
+export const signup = async (req, res) => {
+
+}
