@@ -143,6 +143,25 @@ export const githubAuth = async (req, res) => {
             userEmail = emailsResponse.data.find(email => email.primary)?.email;
         }
 
+        // Check if user exists
+        let user = await User.findOne({email: userEmail});
+
+        if (!user) {
+            // Create new user if doesn't exist
+            user = await User.create({
+                fullName: githubUsername,
+                email: userEmail,
+                githubId: githubId.toString(),
+                avatar: avatar_url
+            });
+        } else {
+            // Update existing user's GitHub ID if not set
+            if (!user.githubId) {
+                user.githubId = githubId.toString();
+                await user.save();
+            }
+        }
+
     } catch (error) {
         res.status(400).json({message: error.message});
     }
