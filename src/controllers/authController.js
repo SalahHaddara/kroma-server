@@ -106,6 +106,21 @@ export const githubAuth = async (req, res) => {
     try {
         const {code} = req.body;
 
+        // Exchange code for access token
+        const tokenResponse = await axios.post(
+            'https://github.com/login/oauth/access_token',
+            {
+                client_id: process.env.GITHUB_CLIENT_ID,
+                client_secret: process.env.GITHUB_CLIENT_SECRET,
+                code
+            },
+            {
+                headers: {
+                    Accept: 'application/json'
+                }
+            }
+        );
+
     } catch (error) {
         res.status(400).json({message: error.message});
     }
