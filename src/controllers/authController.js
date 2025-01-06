@@ -60,3 +60,13 @@ export const login = async (req, res) => {
         res.status(400).json({message: e.message});
     }
 }
+
+export const googleAuth = async (req, res) => {
+    try {
+        const {token} = req.body;
+
+
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+};
