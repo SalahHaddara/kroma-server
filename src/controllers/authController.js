@@ -26,5 +26,10 @@ export const signup = async (req, res) => {
 
     const token = signToken(user._id);
 
+    user.password = undefined;
 
+    res.status(201).json({
+        token,
+        user
+    });
 }
