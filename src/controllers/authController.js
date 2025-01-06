@@ -37,3 +37,12 @@ export const signup = async (req, res) => {
         res.status(401).json({message: e.message});
     }
 }
+
+export const login = async (req, res) => {
+    const {email, password} = req.body;
+
+    const user = User.find({email}).select('+password');
+    if (!user || !(await user.comparePassword(password))) {
+        return res.status(401).json({message: 'Invalid email or password'});
+    }
+}
