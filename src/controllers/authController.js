@@ -71,6 +71,8 @@ export const googleAuth = async (req, res) => {
             audience: process.env.GOOGLE_CLIENT_ID
         });
 
+        const {email, name, picture, sub: googleId} = ticket.getPayload();
+
 
     } catch (error) {
         res.status(400).json({message: error.message});
