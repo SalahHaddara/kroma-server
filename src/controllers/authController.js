@@ -41,15 +41,16 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-
         const {email, password} = req.body;
 
-        const user = User.find({email}).select('+password');
+        const user = await User.findOne({email}).select('+password');
+
         if (!user || !(await user.comparePassword(password))) {
             return res.status(401).json({message: 'Invalid email or password'});
         }
 
         const token = signToken(user._id);
+
 
         user.password = undefined;
 
