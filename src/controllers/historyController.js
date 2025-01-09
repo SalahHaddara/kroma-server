@@ -76,4 +76,8 @@ export async function deleteHistoryItem(req, res) {
     const {id} = req.params;
     const userId = req.user._id;
 
+    const history = await DesignTokenHistory.findOneAndDelete({
+        _id: id,
+        user: userId
+    });
 }
