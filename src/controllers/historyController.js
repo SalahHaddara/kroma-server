@@ -44,24 +44,30 @@ export async function getUserHistory(req, res) {
 }
 
 export async function getHistoryById(req, res) {
-    const {id} = req.params;
-    const userId = req.user._id;
+    try {
+        const {id} = req.params;
+        const userId = req.user._id;
 
-    const history = await DesignTokenHistory.findOne({
-        _id: id,
-        user: userId
-    });
+        const history = await DesignTokenHistory.findOne({
+            _id: id,
+            user: userId
+        });
 
-    if (!history) {
-        return res.status(404).json({
+        if (!history) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'Design token history not found'
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: history
+        });
+    } catch (error) {
+        res.status(400).json({
             status: 'error',
-            message: 'Design token history not found'
+            message: error.message
         });
     }
-
-    res.status(200).json({
-        status: 'success',
-        data: history
-    });
-
 }
