@@ -27,4 +27,8 @@ export async function saveDesignTokenHistory(req, res) {
 
 export async function getUserHistory(req, res) {
 
+    const userId = req.user._id;
+    const history = await DesignTokenHistory.find({user: userId}).sort({createdAt: -1});
+
+
 }
