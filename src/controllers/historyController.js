@@ -73,5 +73,7 @@ export async function getHistoryById(req, res) {
 }
 
 export async function deleteHistoryItem(req, res) {
+    const {id} = req.params;
+    const userId = req.user._id;
 
 }
