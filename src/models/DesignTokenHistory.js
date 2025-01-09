@@ -87,7 +87,10 @@ const designTokenHistorySchema = new mongoose.Schema({
             imageData: String
         }
     },
- 
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 
