@@ -14,6 +14,7 @@ router.use(protect);
 
 router.post('/', saveDesignTokenHistory);
 router.get('/', getUserHistory);
+router.get('/:id', getHistoryById);
 
 
 export default router;
