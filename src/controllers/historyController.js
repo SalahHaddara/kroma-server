@@ -24,3 +24,7 @@ export async function saveDesignTokenHistory(req, res) {
         });
     }
 }
+
+export async function getUserHistory(req, res) {
+
+}
