@@ -13,6 +13,7 @@ const router = express.Router();
 router.use(protect);
 
 router.post('/', saveDesignTokenHistory);
+router.get('/', getUserHistory);
 
 
 export default router;
