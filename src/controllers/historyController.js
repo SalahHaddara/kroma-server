@@ -51,4 +51,11 @@ export async function getHistoryById(req, res) {
         _id: id,
         user: userId
     });
+
+    if (!history) {
+        return res.status(404).json({
+            status: 'error',
+            message: 'Design token history not found'
+        });
+    }
 }
