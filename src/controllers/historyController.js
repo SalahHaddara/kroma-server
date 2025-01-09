@@ -71,3 +71,7 @@ export async function getHistoryById(req, res) {
         });
     }
 }
+
+export async function deleteHistoryItem(req, res) {
+
+}
