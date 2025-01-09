@@ -26,12 +26,19 @@ export async function saveDesignTokenHistory(req, res) {
 }
 
 export async function getUserHistory(req, res) {
+    try {
+        const userId = req.user._id;
+        const history = await DesignTokenHistory.find({user: userId})
+            .sort({createdAt: -1});
 
-    const userId = req.user._id;
-    const history = await DesignTokenHistory.find({user: userId}).sort({createdAt: -1});
-
-    res.status(200).json({
-        status: 'success',
-        data: history
-    });
+        res.status(200).json({
+            status: 'success',
+            data: history
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'error',
+            message: error.message
+        });
+    }
 }
