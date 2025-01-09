@@ -15,6 +15,6 @@ router.use(protect);
 router.post('/', saveDesignTokenHistory);
 router.get('/', getUserHistory);
 router.get('/:id', getHistoryById);
-
+router.delete('/:id', deleteHistoryItem);
 
 export default router;
