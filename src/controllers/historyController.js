@@ -12,4 +12,9 @@ export async function saveDesignTokenHistory(req, res) {
         designTokens,
         inspirationImages
     });
+
+    res.status(201).json({
+        status: 'success',
+        data: history
+    });
 }
