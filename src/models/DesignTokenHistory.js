@@ -93,6 +93,7 @@ const designTokenHistorySchema = new mongoose.Schema({
     }
 });
 
+designTokenHistorySchema.index({user: 1, createdAt: -1});
 
 const DesignTokenHistory = mongoose.model('DesignTokenHistory', designTokenHistorySchema);
 export default DesignTokenHistory;
