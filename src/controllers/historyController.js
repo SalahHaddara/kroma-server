@@ -42,3 +42,7 @@ export async function getUserHistory(req, res) {
         });
     }
 }
+
+export async function getHistoryById(req, res) {
+
+}
