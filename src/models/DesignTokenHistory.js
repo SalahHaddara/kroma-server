@@ -6,6 +6,11 @@ const designTokenHistorySchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    prompt: {
+        type: String,
+        required: true,
+        minLength: 10
+    },
 });
 
 
