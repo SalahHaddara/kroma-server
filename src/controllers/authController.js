@@ -176,7 +176,6 @@ export const githubAuth = async (req, res) => {
     }
 };
 
-
 const pluginSessions = new Map();
 
 export const checkPluginSession = async (req, res) => {
@@ -207,3 +206,18 @@ export const checkPluginSession = async (req, res) => {
     }
 };
 
+export const checkPluginLogin = async (req, res) => {
+    const {sessionKey} = req.query;
+    const session = pluginSessions.get(sessionKey);
+
+    if (session) {
+        pluginSessions.delete(sessionKey);
+        res.json({
+            authenticated: true,
+            token: session.token,
+            user: session.user
+        });
+    } else {
+        res.json({authenticated: false});
+    }
+};
