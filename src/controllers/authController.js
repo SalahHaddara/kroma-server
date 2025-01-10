@@ -175,3 +175,35 @@ export const githubAuth = async (req, res) => {
         res.status(400).json({message: error.message});
     }
 };
+
+
+const pluginSessions = new Map();
+
+export const checkPluginSession = async (req, res) => {
+    console.log('Checking plugin session');
+    try {
+        const token = req.headers.authorization?.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({authenticated: false});
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id);
+
+        if (!user) {
+            return res.status(401).json({authenticated: false});
+        }
+
+        res.json({
+            authenticated: true,
+            token,
+            user: {
+                email: user.email,
+                name: user.fullName
+            }
+        });
+    } catch (error) {
+        res.status(500).json({error: 'Server error'});
+    }
+};
+
