@@ -27,12 +27,17 @@ export async function getDesignTokens(req, res) {
 }
 
 export async function getDesignTokenHistory(req, res) {
-    const latestDesign = await DesignTokenHistory.findOne({
-        user: req.user._id
-    }).sort({createdAt: -1});
+    try {
+        const latestDesign = await DesignTokenHistory.findOne({
+            user: req.user._id
+        }).sort({createdAt: -1});
 
-    res.json({
-        ...latestDesign.designTokens,
-        inspirationImages: latestDesign.inspirationImages
-    });
+        res.json({
+            ...latestDesign.designTokens,
+            inspirationImages: latestDesign.inspirationImages
+        });
+    } catch (e) {
+        console.error('Error fetching design tokens', e);
+        res.status(500).json({error: 'Failed to fetch design tokens'});
+    }
 }
