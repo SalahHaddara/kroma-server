@@ -1,5 +1,5 @@
 import express from 'express';
-import {getDesignTokens} from '../controllers/designTokenController.js';
+import {getDesignTokens, getLatestDesignTokens} from '../controllers/designTokenController.js';
 import {protect} from "../middleware/auth.js";
 
 const router = express.Router();

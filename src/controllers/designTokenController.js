@@ -26,7 +26,7 @@ export async function getDesignTokens(req, res) {
     }
 }
 
-export async function getDesignTokenHistory(req, res) {
+export async function getLatestDesignTokens(req, res) {
     try {
         const latestDesign = await DesignTokenHistory.findOne({
             user: req.user._id
