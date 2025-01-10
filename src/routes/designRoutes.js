@@ -8,9 +8,6 @@ router.use(protect);
 
 router.get('/tokens', getDesignTokens);
 router.post('/tokens', getDesignTokens);
-
-router.get('/latest-tokens', async (req, res) => {
-
-});
+router.get('/latest-tokens', getLatestDesignTokens);
 
 export default router;
