@@ -25,3 +25,10 @@ export async function getDesignTokens(req, res) {
         }
     }
 }
+
+export async function getDesignTokenHistory(req, res) {
+    const latestDesign = await DesignTokenHistory.findOne({
+        user: req.user._id
+    }).sort({createdAt: -1});
+
+}
