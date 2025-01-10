@@ -31,4 +31,8 @@ export async function getDesignTokenHistory(req, res) {
         user: req.user._id
     }).sort({createdAt: -1});
 
+    res.json({
+        ...latestDesign.designTokens,
+        inspirationImages: latestDesign.inspirationImages
+    });
 }
