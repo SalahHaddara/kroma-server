@@ -221,3 +221,21 @@ export const checkPluginLogin = async (req, res) => {
         res.json({authenticated: false});
     }
 };
+
+export const completePluginLogin = async (req, res) => {
+    console.log('Request user:', req.user); // Add this line
+    const {sessionKey} = req.body;
+    if (!sessionKey || !req.user) {
+        return res.status(400).json({error: 'Invalid request'});
+    }
+
+    pluginSessions.set(sessionKey, {
+        token: jwt.sign({id: req.user._id}, process.env.JWT_SECRET),
+        user: {
+            email: req.user.email,
+            name: req.user.fullName
+        }
+    });
+
+    res.json({success: true});
+};
