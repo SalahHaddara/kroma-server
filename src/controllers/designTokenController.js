@@ -55,5 +55,8 @@ export async function saveDesignSVG(req, res) {
         return res.status(404).json({error: 'No design history found'});
     }
 
+    latestDesign.designSVG = svg;
+    await latestDesign.save();
+
 
 }
