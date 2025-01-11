@@ -47,5 +47,12 @@ export async function saveDesignSVG(req, res) {
     const userId = req.user._id;
     const {svg} = req.body;
 
+    await DesignTokenHistory.findOneAndUpdate(
+        {user: userId},
+        {$set: {designSVG: svg}},
+        {sort: {createdAt: -1}}
+    );
+
+    res.status(200).json({message: 'Design saved successfully'});
 
 }
