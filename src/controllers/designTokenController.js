@@ -51,4 +51,9 @@ export async function saveDesignSVG(req, res) {
         user: userId
     }).sort({createdAt: -1});
 
+    if (!latestDesign) {
+        return res.status(404).json({error: 'No design history found'});
+    }
+
+
 }
