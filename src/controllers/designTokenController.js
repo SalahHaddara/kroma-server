@@ -43,20 +43,23 @@ export async function getLatestDesignTokens(req, res) {
 }
 
 export async function saveDesignSVG(req, res) {
+    try {
+        const userId = req.user._id;
+        const {svg} = req.body;
 
-    const userId = req.user._id;
-    const {svg} = req.body;
+        const latestDesign = await DesignTokenHistory.findOne({
+            user: userId
+        }).sort({createdAt: -1});
 
-    const latestDesign = await DesignTokenHistory.findOne({
-        user: userId
-    }).sort({createdAt: -1});
+        if (!latestDesign) {
+            return res.status(404).json({error: 'No design history found'});
+        }
 
-    if (!latestDesign) {
-        return res.status(404).json({error: 'No design history found'});
+        latestDesign.designSVG = svg;
+        await latestDesign.save();
+
+        res.status(200).json({message: 'Design SVG saved successfully'});
+    } catch (error) {
+        res.status(500).json({error: error.message});
     }
-
-    latestDesign.designSVG = svg;
-    await latestDesign.save();
-
-
 }
