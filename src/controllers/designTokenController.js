@@ -41,3 +41,11 @@ export async function getLatestDesignTokens(req, res) {
         res.status(500).json({error: 'Failed to fetch design tokens'});
     }
 }
+
+export async function saveDesignSVG(req, res) {
+
+    const userId = req.user._id;
+    const {svg} = req.body;
+
+
+}
