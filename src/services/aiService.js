@@ -1,11 +1,12 @@
 import {openai} from '../config/openai.js';
 import {DESIGN_TOKEN_PARTS, GPT_CONFIG} from '../config/constants.js';
 import {designTokensStructure} from '../models/designTokens.js';
+import {generateDesignSystem} from "./designTokenService.js";
 
 function getSystemPrompt(userInput, parts) {
     const partsList = Object.keys(parts).join(', ');
     return `Create a design system with these requirements:
-    Preserve the same exact STRUCTURE of the json and change ALL the values 
+    Preserve the same exact STRUCTURE of the json and change ALL the values, do not use unpopular fonts,
 
     Theme requirements: ${JSON.stringify(userInput)}
     
@@ -78,6 +79,37 @@ export async function generateCompleteDesignTokens(prompt) {
         generateDesignTokenPart(prompt, DESIGN_TOKEN_PARTS.part1),
         generateDesignTokenPart(prompt, DESIGN_TOKEN_PARTS.part2)
     ]);
-
+    console.log({part1Response, part2Response});
     return {part1Response, part2Response};
+}
+
+export async function analyzeImageForDesignPrompt(imageBase64) {
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: [
+                        {
+                            type: "text",
+                            text: "write a prompt that represents that image, the prompt should not exceed 3 lines max, do not use unpopular fonts"
+                        },
+                        {
+                            type: "image_url",
+                            image_url: {
+                                url: `data:image/jpeg;base64,${imageBase64}`
+                            }
+                        }
+                    ]
+                }
+            ],
+        });
+        console.log(response.choices[0].message.content);
+        return response.choices[0].message.content;
+
+    } catch (error) {
+        console.error('Error analyzing image:', error);
+        throw new Error('Failed to analyze image for design prompt');
+    }
 }
