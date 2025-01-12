@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    generateFromImage,
     getDesignTokens,
     getLatestDesignTokens,
     saveDesignPNG
@@ -16,5 +17,6 @@ router.get('/tokens', getDesignTokens);
 router.post('/tokens', getDesignTokens);
 router.get('/latest-tokens', getLatestDesignTokens);
 router.post('/save-design', protect, saveDesignPNG);
+router.post('/generate-from-image', generateFromImage);
 
 export default router;
