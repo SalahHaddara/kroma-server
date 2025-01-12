@@ -1,6 +1,7 @@
 import {generateDesignSystem} from '../services/designTokenService.js';
 import {ValidationError} from '../services/validationService.js';
 import DesignTokenHistory from '../models/DesignTokenHistory.js';
+import {analyzeImageForDesignPrompt} from "../services/aiService.js";
 
 export async function getDesignTokens(req, res) {
     try {
@@ -72,5 +73,39 @@ saveDesignPNG(req, res) {
         res.status(200).json({message: 'Design image saved successfully'});
     } catch (error) {
         res.status(500).json({error: error.message});
+    }
+}
+
+
+export async function generateFromImage(req, res) {
+    try {
+        if (!req.files || !req.files.image) {
+            return res.status(400).json({error: 'No image uploaded'});
+        }
+
+        const image = req.files.image;
+        const imageBase64 = image.data.toString('base64');
+
+        // const {designPrompt, designSystem, inspirationImages} =
+        //     await generateDesignSystemFromImage(imageBase64);
+
+
+        const designPrompt = await analyzeImageForDesignPrompt(imageBase64);
+        const designSystem = await generateDesignSystem(designPrompt);
+
+        // Save to history if user is authenticated
+        if (req.user) {
+            await DesignTokenHistory.create({
+                user: req.user._id,
+                prompt: designPrompt,
+                designTokens: designSystem,
+                inspirationImages: designSystem.inspirationImages
+            });
+        }
+
+        res.json(designSystem);
+    } catch (error) {
+        console.error('Error generating design from image:', error);
+        res.status(500).json({error: 'Failed to generate design system from image'});
     }
 }
