@@ -87,8 +87,8 @@ const designTokenHistorySchema = new mongoose.Schema({
             imageData: String
         }
     },
-    designSVG: {
-        type: String,
+    designImage: {
+        type: Buffer,
         required: false
     },
     createdAt: {
