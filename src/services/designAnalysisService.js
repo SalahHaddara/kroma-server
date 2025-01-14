@@ -1,56 +1,5 @@
 import {openai} from '../config/openai.js';
 
-const parseGPTResponse = (responseText) => {
-    const sections = {
-        critical: [],
-        moderate: [],
-        suggestions: []
-    };
-
-    // Split the text into main sections
-    const mainSections = responseText.split(/###\s+/g).filter(Boolean);
-
-    mainSections.forEach(section => {
-        const lines = section.split('\n').filter(Boolean);
-        const sectionTitle = lines[0].toLowerCase().trim();
-
-        // Process each numbered item in the section
-        const items = lines.slice(1).join('\n').split(/\d+\.\s+/).filter(Boolean);
-
-        items.forEach(item => {
-            const issueMatch = item.match(/\*\*(.*?):\*\*(.*?)(?=-\s+\*\*|$)/s);
-            const recommendationMatch = item.match(/-\s+\*\*Recommendation\*\*:(.*?)(?=\n|$)/s);
-
-            if (issueMatch) {
-                const [_, title, descriptionPart] = issueMatch;
-                const recommendation = recommendationMatch ? recommendationMatch[1].trim() : '';
-                const description = (descriptionPart + (recommendation ? ". " + recommendation : "")).trim();
-
-                const issue = {
-                    title: title.trim(),
-                    description: description,
-                    category: determineCategory(title, description),
-                    severity: sectionTitle.includes('critical') ? 3 :
-                        sectionTitle.includes('moderate') ? 2 : 1,
-                    colorCode: sectionTitle.includes('critical') ? '#DC2626' :
-                        sectionTitle.includes('moderate') ? '#F97316' :
-                            '#EAB308'
-                };
-
-                if (sectionTitle.includes('critical')) {
-                    sections.critical.push(issue);
-                } else if (sectionTitle.includes('moderate')) {
-                    sections.moderate.push(issue);
-                } else if (sectionTitle.includes('suggestion')) {
-                    sections.suggestions.push(issue);
-                }
-            }
-        });
-    });
-
-    return sections;
-};
-
 function determineCategory(title) {
     const titleLower = title.toLowerCase();
     if (titleLower.includes('accessibility')) return 'Accessibility';
@@ -61,7 +10,6 @@ function determineCategory(title) {
     if (titleLower.includes('navigation')) return 'Navigation';
     return 'Layout';
 }
-
 
 export async function analyzeDesignImage(dataUrl) {
     try {
@@ -119,44 +67,12 @@ export async function analyzeDesignImage(dataUrl) {
             throw new Error('Failed to generate analysis');
         }
 
-        // Parse the GPT response into structured data
-        const analysis = parseGPTResponse(analysisText);
         const structuredAnalysis = parseMarkdownAnalysis(analysisText);
 
         return structuredAnalysis
     } catch (error) {
         console.error('OpenAI API Error:', error);
         throw error;
-    }
-}
-
-function parseAnalysisText(analysisText) {
-
-    const structured = {
-        critical: [],
-        moderate: [],
-        suggestions: []
-    };
-
-    try {
-        const sections = analysisText.split('\n\n');
-
-        sections.forEach(section => {
-            if (section.includes('Critical')) {
-                structured.critical.push({
-                    title: "Parsed from text",
-                    description: section,
-                    category: "Layout",
-                    severity: 3,
-                    colorCode: "#FF0000"
-                });
-            }
-        });
-
-        return structured;
-    } catch (error) {
-        console.error('Error parsing analysis text:', error);
-        return structured;  // Return empty arrays if parsing fails
     }
 }
 
