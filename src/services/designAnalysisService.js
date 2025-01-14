@@ -130,4 +130,34 @@ export async function analyzeDesignImage(dataUrl) {
     }
 }
 
+function parseAnalysisText(analysisText) {
+
+    const structured = {
+        critical: [],
+        moderate: [],
+        suggestions: []
+    };
+
+    try {
+        const sections = analysisText.split('\n\n');
+
+        sections.forEach(section => {
+            if (section.includes('Critical')) {
+                structured.critical.push({
+                    title: "Parsed from text",
+                    description: section,
+                    category: "Layout",
+                    severity: 3,
+                    colorCode: "#FF0000"
+                });
+            }
+        });
+
+        return structured;
+    } catch (error) {
+        console.error('Error parsing analysis text:', error);
+        return structured;  // Return empty arrays if parsing fails
+    }
+}
+
 
