@@ -160,4 +160,53 @@ function parseAnalysisText(analysisText) {
     }
 }
 
+function parseMarkdownAnalysis(analysisText) {
+    const structured = {
+        critical: [],
+        moderate: [],
+        suggestions: []
+    };
+
+    // Split into main sections
+    const sections = analysisText.split('###').filter(Boolean);
+
+    sections.forEach(section => {
+        const lines = section.trim().split('\n');
+        const sectionType = lines[0].trim().toLowerCase();
+
+        // Skip the section header
+        const bulletPoints = lines.slice(1)
+            .filter(line => line.trim().startsWith('-'))
+            .map(line => line.trim().substring(1).trim());
+
+        // Group bullet points by their parent
+        let currentIssue = null;
+
+        bulletPoints.forEach(point => {
+            if (point.startsWith('**')) {
+                currentIssue = {
+                    title: point.match(/\*\*(.*?):\*\*/)[1],
+                    description: '',
+                    subpoints: [],
+                    category: determineCategory(point),
+                    severity: sectionType.includes('critical') ? 3 :
+                        sectionType.includes('moderate') ? 2 : 1,
+                    colorCode: sectionType.includes('critical') ? '#EF4444' :
+                        sectionType.includes('moderate') ? '#F97316' : '#EAB308'
+                };
+
+                // Add to appropriate section
+                if (sectionType.includes('critical')) structured.critical.push(currentIssue);
+                else if (sectionType.includes('moderate')) structured.moderate.push(currentIssue);
+                else structured.suggestions.push(currentIssue);
+            } else if (currentIssue) {
+                // This is a subpoint of the current issue
+                currentIssue.subpoints.push(point);
+                currentIssue.description += (currentIssue.description ? ' ' : '') + point;
+            }
+        });
+    });
+
+    return structured;
+}
 
