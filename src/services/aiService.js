@@ -1,7 +1,6 @@
 import {openai} from '../config/openai.js';
 import {DESIGN_TOKEN_PARTS, GPT_CONFIG} from '../config/constants.js';
 import {designTokensStructure} from '../models/designTokens.js';
-import {generateDesignSystem} from "./designTokenService.js";
 
 function getSystemPrompt(userInput, parts) {
     const partsList = Object.keys(parts).join(', ');
