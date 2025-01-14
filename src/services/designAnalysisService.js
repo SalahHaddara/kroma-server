@@ -59,5 +59,160 @@ function determineCategory(title) {
     if (titleLower.includes('color') || titleLower.includes('contrast')) return 'Color';
     if (titleLower.includes('spacing')) return 'Spacing';
     if (titleLower.includes('navigation')) return 'Navigation';
-    return 'Layout'; // default category
+    return 'Layout';
 }
+
+
+export async function analyzeDesignImage(dataUrl) {
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "user",
+                    content: [
+                        {
+                            type: "text",
+                            text: `Analyze this UI design image in detail and provide specific feedback in these categories:
+
+                            CRITICAL ISSUES:
+                            - Look for serious problems with accessibility, usability, and functionality
+                            - Examine contrast ratios, text readability, and navigation clarity
+                            - Identify any major layout or alignment issues
+                            - Don't add any critical issue unless it is really critical not just assumptions.
+
+                            MODERATE IMPROVEMENTS:
+                            - Check spacing consistency and visual hierarchy
+                            - Evaluate typography choices and sizing
+                            - Assess color scheme effectiveness and consistency
+
+                            SUGGESTIONS:
+                            - Recommend refinements for better user experience
+                            - Suggest minor visual enhancements
+                            - Propose optimization for different screen sizes
+                            here is the EXACT structure formatting u should follow : 
+                            ### CRITICAL ISSUES
+
+                            - **Accessibility:**
+                            - Ensure that text elements...
+                            - Alt text for icons...
+
+                            - **Usability:**
+                            - The navigation should...
+                            `
+                        },
+                        {
+                            type: "image_url",
+                            image_url: {
+                                url: dataUrl
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+
+        const analysisText = response.choices[0]?.message?.content;
+        console.log('Raw GPT Response:', analysisText);
+
+        if (!analysisText) {
+            throw new Error('Failed to generate analysis');
+        }
+
+        // Parse the GPT response into structured data
+        const analysis = parseGPTResponse(analysisText);
+        const structuredAnalysis = parseMarkdownAnalysis(analysisText);
+
+        return structuredAnalysis
+    } catch (error) {
+        console.error('OpenAI API Error:', error);
+        throw error;
+    }
+}
+
+function parseAnalysisText(analysisText) {
+    // This is where we'll convert the text analysis into our structured format
+    // You'll need to adapt this based on the actual format of your analysisText
+
+    const structured = {
+        critical: [],
+        moderate: [],
+        suggestions: []
+    };
+
+    try {
+        // Example parsing logic - adjust based on your actual text format
+        const sections = analysisText.split('\n\n');
+
+        sections.forEach(section => {
+            if (section.includes('Critical')) {
+                // Parse critical issues
+                structured.critical.push({
+                    title: "Parsed from text",
+                    description: section,
+                    category: "Layout",  // You'll need logic to determine category
+                    severity: 3,
+                    colorCode: "#FF0000"
+                });
+            }
+            // Similar logic for moderate and suggestions
+        });
+
+        return structured;
+    } catch (error) {
+        console.error('Error parsing analysis text:', error);
+        return structured;  // Return empty arrays if parsing fails
+    }
+}
+
+function parseMarkdownAnalysis(analysisText) {
+    const structured = {
+        critical: [],
+        moderate: [],
+        suggestions: []
+    };
+
+    // Split into main sections
+    const sections = analysisText.split('###').filter(Boolean);
+
+    sections.forEach(section => {
+        const lines = section.trim().split('\n');
+        const sectionType = lines[0].trim().toLowerCase();
+
+        // Skip the section header and process only the content
+        const bulletPoints = lines.slice(1)
+            .filter(line => line.trim().startsWith('-'))
+            .map(line => line.trim().substring(1).trim());
+
+        // Group bullet points by their parent
+        let currentIssue = null;
+
+        bulletPoints.forEach(point => {
+            if (point.startsWith('**')) {
+                // This is a main issue title
+                currentIssue = {
+                    title: point.match(/\*\*(.*?):\*\*/)[1],
+                    description: '',
+                    subpoints: [],
+                    category: determineCategory(point),
+                    severity: sectionType.includes('critical') ? 3 :
+                        sectionType.includes('moderate') ? 2 : 1,
+                    colorCode: sectionType.includes('critical') ? '#EF4444' :
+                        sectionType.includes('moderate') ? '#F97316' : '#EAB308'
+                };
+
+                // Add to appropriate section
+                if (sectionType.includes('critical')) structured.critical.push(currentIssue);
+                else if (sectionType.includes('moderate')) structured.moderate.push(currentIssue);
+                else structured.suggestions.push(currentIssue);
+            } else if (currentIssue) {
+                // This is a subpoint of the current issue
+                currentIssue.subpoints.push(point);
+                currentIssue.description += (currentIssue.description ? ' ' : '') + point;
+            }
+        });
+    });
+
+    return structured;
+}
+
