@@ -11,6 +11,7 @@ const designAnalysisSchema = new mongoose.Schema({
         required: true
     },
     analysis: {
+        // Critical issues that need immediate attention
         critical: [{
             title: {
                 type: String,
@@ -27,14 +28,14 @@ const designAnalysisSchema = new mongoose.Schema({
             },
             severity: {
                 type: Number,
-                default: 3
+                default: 3  // 3 = Critical
             },
             colorCode: {
                 type: String,
-                default: '#FF0000'
+                default: '#FF0000'  // Red for critical issues
             }
         }],
-
+        // Moderate improvements needed
         moderate: [{
             title: {
                 type: String,
@@ -51,13 +52,14 @@ const designAnalysisSchema = new mongoose.Schema({
             },
             severity: {
                 type: Number,
-                default: 2
+                default: 2  // 2 = Moderate
             },
             colorCode: {
                 type: String,
-                default: '#FFA500'
+                default: '#FFA500'  // Orange for moderate issues
             }
         }],
+        // Minor suggestions for enhancement
         suggestions: [{
             title: {
                 type: String,
@@ -74,11 +76,11 @@ const designAnalysisSchema = new mongoose.Schema({
             },
             severity: {
                 type: Number,
-                default: 1
+                default: 1  // 1 = Suggestion
             },
             colorCode: {
                 type: String,
-                default: '#FFD700'
+                default: '#FFD700'  // Gold for suggestions
             }
         }]
     },
@@ -88,6 +90,7 @@ const designAnalysisSchema = new mongoose.Schema({
     }
 });
 
+// Index for faster queries
 designAnalysisSchema.index({user: 1, createdAt: -1});
 
 const DesignAnalysis = mongoose.model('DesignAnalysis', designAnalysisSchema);
