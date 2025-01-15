@@ -110,7 +110,6 @@ function parseMarkdownAnalysis(analysisText) {
                     colorCode: sectionType.includes('critical') ? '#EF4444' :
                         sectionType.includes('moderate') ? '#F97316' : '#EAB308'
                 };
-
                 // Add to appropriate section
                 if (sectionType.includes('critical')) structured.critical.push(currentIssue);
                 else if (sectionType.includes('moderate')) structured.moderate.push(currentIssue);
