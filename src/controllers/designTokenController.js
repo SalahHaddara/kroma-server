@@ -49,8 +49,7 @@ export async function getLatestDesignTokens(req, res) {
     }
 }
 
-export async function
-saveDesignPNG(req, res) {
+export async function saveDesignPNG(req, res) {
     try {
         if (!req.files || !req.files.design) {
             return res.status(400).json({error: 'No design image uploaded'});
@@ -85,10 +84,6 @@ export async function generateFromImage(req, res) {
 
         const image = req.files.image;
         const imageBase64 = image.data.toString('base64');
-
-        // const {designPrompt, designSystem, inspirationImages} =
-        //     await generateDesignSystemFromImage(imageBase64);
-
 
         const designPrompt = await analyzeImageForDesignPrompt(imageBase64);
         const designSystem = await generateDesignSystem(designPrompt);
