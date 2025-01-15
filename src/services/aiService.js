@@ -6,6 +6,7 @@ function getSystemPrompt(userInput, parts) {
     const partsList = Object.keys(parts).join(', ');
     return `Create a design system with these requirements:
     Preserve the same exact STRUCTURE of the json and change ALL the values, do not use unpopular fonts,
+    make sure to always generate new icons svg do not use the same icons
 
     Theme requirements: ${JSON.stringify(userInput)}
     
@@ -26,6 +27,8 @@ export async function generateDesignTokenPart(prompt, part) {
             }
         ]
     });
+    const x = response.choices[0].message.content;
+    console.log("/////////////////////////////", x);
 
     return response.choices[0].message.content;
 }
