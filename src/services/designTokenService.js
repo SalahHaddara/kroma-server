@@ -3,6 +3,7 @@ import {validateStructure, validatePrompt} from './validationService.js';
 import {designTokensStructure} from '../models/designTokens.js';
 import * as path from 'path';
 import {fileURLToPath} from 'url';
+import {generateInspirationImages} from "./aiService.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +26,7 @@ Important requirements:
 and do not include \`\`\`json and \`\`\` when start and finish
 and do not use fonts that are not available in figma always use fonts available in figma
 change every single value in theat json strucutre without changing the strucutre itself by chagne every single value to match the whole moodobard goal and vibes and theme
-change all icons and all textsin alerts`;
+change all icons and all texts in alerts`;
 
 export async function generateDesignSystem(prompt) {
     try {
@@ -51,19 +52,20 @@ export async function generateDesignSystem(prompt) {
         console.log("//////////", completion);
         const designSystem = JSON.parse(completion.choices[0].message.content);
         console.log(designSystem);
-        // Validate the structure matches our template
+
         validateStructure(designSystem, designTokensStructure);
 
-        // Return dummy image data to maintain API structure
-        const dummyImages = {
-            mainImage: {imageData: null},
-            smallImage1: {imageData: null},
-            smallImage2: {imageData: null}
-        };
+        // const dummyImages = {
+        //     mainImage: {imageData: null},
+        //     smallImage1: {imageData: null},
+        //     smallImage2: {imageData: null}
+        // };
+
+        const inspirationImages = await generateInspirationImages(prompt);
 
         return {
             ...designSystem,
-            inspirationImages: dummyImages
+            inspirationImages: inspirationImages
         };
     } catch (error) {
         console.error('Error generating design system:', error);
