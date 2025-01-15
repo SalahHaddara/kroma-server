@@ -20,15 +20,6 @@ app.use(cors({
 app.options('*', cors());
 
 app.use(express.json());
-app.use(fileUpload({
-    limits: {fileSize: 5 * 1024 * 1024},
-    abortOnLimit: true,
-    responseOnLimit: "File size limit exceeded (5MB)",
-    debug: true,
-    useTempFiles: false,
-    preserveExtension: true,
-    safeFileNames: true
-}));
 app.get('/test', (req, res) => {
     res.json({message: 'API working'});
 });
