@@ -67,14 +67,19 @@ export const login = async (req, res) => {
 
 export const createAdmin = async () => {
     try {
+        const adminEmail = 'admin@kroma.ai'
 
-        await User.create({
-            fullName: "Admin",
-            email: "admin@kroma.com",
-            password: "kroma",
-            isAdmin: true
-        });
-        console.log('Admin created');
+        const existingAdmin = await User.findOne({email: adminEmail});
+
+        if (!existingAdmin) {
+            await User.create({
+                fullName: "Admin",
+                email: "admin@kroma.ai",
+                password: "kroma",
+                isAdmin: true
+            });
+            console.log('Admin created');
+        }
     } catch (error) {
         console.log('Error creating admin', error)
     }
