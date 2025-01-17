@@ -51,15 +51,32 @@ export const login = async (req, res) => {
 
         const token = signToken(user._id);
 
-
         user.password = undefined;
 
         res.status(200).json({
             token,
-            user
+            user: {
+                ...user.toObject(),
+                isAdmin: user.isAdmin
+            }
         });
     } catch (e) {
         res.status(400).json({message: e.message});
+    }
+}
+
+export const createAdmin = async () => {
+    try {
+
+        await User.create({
+            fullName: "Admin",
+            email: "admin@kroma.com",
+            password: "kroma",
+            isAdmin: true
+        });
+        console.log('Admin created');
+    } catch (error) {
+        console.log('Error creating admin', error)
     }
 }
 
