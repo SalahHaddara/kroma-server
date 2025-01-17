@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
             return !this.googleId && !this.githubId;
         }
     },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     googleId: String,
     githubId: String,
     avatar: String,
