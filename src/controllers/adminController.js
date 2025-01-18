@@ -43,3 +43,37 @@ export const getAllUsers = async (req, res) => {
     }
 };
 
+export const getUserDetails = async (req, res) => {
+    try {
+        const {userId} = req.params;
+
+        const user = await User.findById(userId).select('-password');
+        if (!user) {
+            return res.status(404).json({message: 'User not found'});
+        }
+
+        const designHistory = await DesignTokenHistory.find({user: userId})
+            .sort({createdAt: -1});
+
+        const analysisHistory = await DesignAnalysis.find({user: userId})
+            .sort({createdAt: -1});
+
+        const stats = {
+            totalDesigns: designHistory.length,
+            totalAnalyses: analysisHistory.length,
+            lastActive: await getLastActiveDate(userId),
+            averageDesignsPerDay: await calculateAverageUsage(userId)
+        };
+
+        res.json({
+            user,
+            stats,
+            history: {
+                designs: designHistory,
+                analyses: analysisHistory
+            }
+        });
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+};
