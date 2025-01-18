@@ -77,3 +77,28 @@ export const getUserDetails = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 };
+
+export const removeUser = async (req, res) => {
+    try {
+        const {userId} = req.params;
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({message: 'User not found'});
+        }
+        if (user.isAdmin) {
+            return res.status(403).json({message: 'Cannot remove admin user'});
+        }
+
+        await Promise.all([
+            DesignTokenHistory.deleteMany({user: userId}),
+            DesignAnalysis.deleteMany({user: userId}),
+            User.findByIdAndDelete(userId)
+        ]);
+
+        res.json({message: 'User and all associated data removed successfully'});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+};
+
