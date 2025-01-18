@@ -129,3 +129,31 @@ export const getSystemStats = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 };
+
+async function getLastActiveDate(userId) {
+    const lastDesign = await DesignTokenHistory.findOne({user: userId})
+        .sort({createdAt: -1})
+        .select('createdAt');
+    const lastAnalysis = await DesignAnalysis.findOne({user: userId})
+        .sort({createdAt: -1})
+        .select('createdAt');
+
+    const dates = [
+        lastDesign?.createdAt,
+        lastAnalysis?.createdAt
+    ].filter(Boolean);
+
+    return dates.length ? new Date(Math.max(...dates)) : null;
+}
+
+async function calculateAverageUsage(userId) {
+    const firstActivity = await DesignTokenHistory.findOne({user: userId})
+        .sort({createdAt: 1})
+        .select('createdAt');
+    if (!firstActivity) return 0;
+
+    const totalDays = Math.ceil((Date.now() - firstActivity.createdAt) / (1000 * 60 * 60 * 24));
+    const totalActivities = await DesignTokenHistory.countDocuments({user: userId});
+
+    return totalActivities / totalDays;
+}
