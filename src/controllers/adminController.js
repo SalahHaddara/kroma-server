@@ -102,3 +102,30 @@ export const removeUser = async (req, res) => {
     }
 };
 
+export const getSystemStats = async (req, res) => {
+    try {
+        const totalUsers = await User.countDocuments({isAdmin: false});
+        const totalDesigns = await DesignTokenHistory.countDocuments();
+        const totalAnalyses = await DesignAnalysis.countDocuments();
+
+        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        const activeUsers = await User.countDocuments({
+            updatedAt: {$gte: oneDayAgo}
+        });
+
+        const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        const dailyStats = await getDailyUsageStats(thirtyDaysAgo);
+
+        res.json({
+            overview: {
+                totalUsers,
+                totalDesigns,
+                totalAnalyses,
+                activeUsers
+            },
+            dailyStats
+        });
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+};
