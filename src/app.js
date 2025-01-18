@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes.js";
 import histroyRoutes from "./routes/histroyRoutes.js";
 import analysisRoutes from "./routes/analysisRoutes.js";
 import fileUpload from "express-fileupload";
+import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/get-design', designRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/history', histroyRoutes);
 app.use('/analysis', analysisRoutes);
+app.use('/admin', adminRoutes);
 
 app.use(errorHandler);
 
