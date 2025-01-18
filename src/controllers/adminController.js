@@ -157,3 +157,24 @@ async function calculateAverageUsage(userId) {
 
     return totalActivities / totalDays;
 }
+
+async function getDailyUsageStats(startDate) {
+    const dailyDesigns = await DesignTokenHistory.aggregate([
+        {
+            $match: {
+                createdAt: {$gte: startDate}
+            }
+        },
+        {
+            $group: {
+                _id: {
+                    $dateToString: {format: "%Y-%m-%d", date: "$createdAt"}
+                },
+                count: {$sum: 1}
+            }
+        },
+        {$sort: {_id: 1}}
+    ]);
+
+    return dailyDesigns;
+}
